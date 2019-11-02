@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/hometoolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+        <Button
+            android:id="@+id/android"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="110dp"
+            android:text="one" />
+
+        <Button
+            android:id="@+id/hot"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:text="two" />
+
+        <Button
+            android:id="@+id/info"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="110dp"
+            android:text="three" />
+    </androidx.appcompat.widget.Toolbar>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/dic_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="8"
+        >
+    </androidx.viewpager.widget.ViewPager>
+
+    <Button
+        android:id="@+id/dic_button"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:textAllCaps="true"
+        android:text="dic" />
+
+    <TextView
+        android:id="@+id/dic_textView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:textSize="30dp"
+        android:text="主页"/>
+
+</LinearLayout>
