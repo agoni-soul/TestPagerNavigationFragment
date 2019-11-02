@@ -11,6 +11,8 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
 import java.util.ArrayList;
@@ -25,13 +27,19 @@ public class HomeFragment extends Fragment implements View.OnClickListener, View
     private ArrayList<View> dic_ArrayList;
     private MyPagerAdapter mAdapter;
 
+    //fragment
+    private HomeFragment_Android homeFragment_android;
+    private HomeFragment_Hot homeFragment_hot;
+    private HomeFragment_Info homeFragment_info;
+    private Fragment[] fragments;
+    private int lastfragment;
+
     private TextView textView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState){
         View view = inflater.inflate(R.layout.dic_layout, container, false);
-
         return view;
     }
 
@@ -101,5 +109,19 @@ public class HomeFragment extends Fragment implements View.OnClickListener, View
         mAdapter = new MyPagerAdapter(dic_ArrayList);
         viewPager.setAdapter(mAdapter);
         viewPager.setCurrentItem(0);
+    }
+
+    private void initFragment()
+    {
+        homeFragment_android = new HomeFragment_Android();
+        homeFragment_hot = new HomeFragment_Hot();
+        homeFragment_info = new HomeFragment_Info();
+        fragments = new Fragment[]{homeFragment_android, homeFragment_hot, homeFragment_info};
+        lastfragment = 0;
+//        FragmentTransaction transaction = getSuppo
+//        getSupportFragmentManager().beginTransaction()
+//                .replace(R.id.viewpager, homeFragment_android)
+//                .show(homeFragment_android)
+//                .commitAllowingStateLoss();
     }
 }
