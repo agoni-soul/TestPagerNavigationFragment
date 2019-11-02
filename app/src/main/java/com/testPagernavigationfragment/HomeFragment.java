@@ -12,6 +12,7 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
@@ -52,6 +53,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener, View
 
         dic_viewPager = (ViewPager) getActivity().findViewById(R.id.dic_viewpager);
         setupViewPager(dic_viewPager);
+        initFragment();
 
         android.setOnClickListener(this);
         hot.setOnClickListener(this);
@@ -72,19 +74,30 @@ public class HomeFragment extends Fragment implements View.OnClickListener, View
             break;
             case R.id.android:
                 dic_viewPager.setCurrentItem(0);
+                if(lastfragment != 0) {
+                    switchFragment(lastfragment,0);
+                    lastfragment = 0;
+                }
                 Toast.makeText(getActivity(), "android", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.hot:
                 dic_viewPager.setCurrentItem(1);
+                if(lastfragment != 1) {
+                    switchFragment(lastfragment,1);
+                    lastfragment = 1;
+                }
                 Toast.makeText(getActivity(), "hot", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.info:
                 dic_viewPager.setCurrentItem(2);
+                if(lastfragment != 2) {
+                    switchFragment(lastfragment,2);
+                    lastfragment = 2;
+                }
                 Toast.makeText(getActivity(), "info", Toast.LENGTH_SHORT).show();
                 break;
         }
     }
-
 
     @Override
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -118,10 +131,22 @@ public class HomeFragment extends Fragment implements View.OnClickListener, View
         homeFragment_info = new HomeFragment_Info();
         fragments = new Fragment[]{homeFragment_android, homeFragment_hot, homeFragment_info};
         lastfragment = 0;
-//        FragmentTransaction transaction = getSuppo
-//        getSupportFragmentManager().beginTransaction()
-//                .replace(R.id.viewpager, homeFragment_android)
-//                .show(homeFragment_android)
-//                .commitAllowingStateLoss();
+        FragmentManager childFragmentManager = getChildFragmentManager();
+
+        childFragmentManager.beginTransaction()
+                .replace(R.id.dic_viewpager, homeFragment_android)
+                .show(homeFragment_android)
+                .commitAllowingStateLoss();
+    }
+
+    private void switchFragment(int lastfragment, int index)
+    {
+        FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
+        //隐藏上个Fragment
+        transaction.remove(fragments[lastfragment]);
+        if(fragments[index].isAdded() == false) {
+            transaction.replace(R.id.dic_viewpager,fragments[index]);
+        }
+        transaction.show(fragments[index]).commitAllowingStateLoss();
     }
 }

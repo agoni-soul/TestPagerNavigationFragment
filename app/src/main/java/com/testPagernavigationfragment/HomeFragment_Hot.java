@@ -34,8 +34,8 @@ public class HomeFragment_Hot extends Fragment implements View.OnClickListener{
     public void onClick(View view){
         switch (view.getId()){
             case R.id.dic_hot_button:{
-                dic_hot_textView.setText("更新android");
-                Toast.makeText(getActivity(), "android", Toast.LENGTH_SHORT).show();
+                dic_hot_textView.setText("更新hot");
+                Toast.makeText(getActivity(), "hot", Toast.LENGTH_SHORT).show();
             }
             break;
         }
