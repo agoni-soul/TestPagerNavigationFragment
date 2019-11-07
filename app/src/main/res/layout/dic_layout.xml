@@ -1,62 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/hometoolbar"
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+        android:background="@color/theme_color_primary"
+        app:elevation="0dp">
 
-        <Button
-            android:id="@+id/android"
-            android:layout_width="50dp"
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <LinearLayout
+            android:gravity="center"
+            android:layout_weight="1"
+            android:layout_gravity="center_vertical"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_marginLeft="110dp"
-            android:text="one" />
+            android:background="?attr/selectableItemBackgroundBorderless">
 
-        <Button
-            android:id="@+id/hot"
-            android:layout_width="50dp"
-            android:layout_height="match_parent"
-            android:text="two" />
+            <ImageView
+                android:id="@+id/android"
+                android:layout_width="65dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/home_android_selector" />
 
-        <Button
-            android:id="@+id/info"
-            android:layout_width="50dp"
-            android:layout_height="match_parent"
-            android:layout_marginRight="110dp"
-            android:text="three" />
-    </androidx.appcompat.widget.Toolbar>
+            <ImageView
+                android:layout_gravity="center"
+                android:id="@+id/hot"
+                android:layout_width="65dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/home_hot_selector" />
+
+            <ImageView
+                android:layout_gravity="center"
+                android:id="@+id/info"
+                android:layout_width="65dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/home_cate_selector" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/iv_search"
+            android:padding="@dimen/dp_10"
+            android:layout_gravity="right|center_vertical"
+            android:src="@mipmap/icon_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        </LinearLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/dic_viewpager"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="8"
-        >
-    </androidx.viewpager.widget.ViewPager>
-
-    <Button
-        android:id="@+id/dic_button"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:textAllCaps="true"
-        android:text="dic" />
-
-    <TextView
-        android:id="@+id/dic_textView"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:textSize="30dp"
-        android:text="主页"/>
+        android:layout_height="match_parent" />
 
 </LinearLayout>

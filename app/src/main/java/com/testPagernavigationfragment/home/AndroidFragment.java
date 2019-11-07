@@ -9,7 +9,7 @@ import com.testPagernavigationfragment.R;
 
 import androidx.fragment.app.Fragment;
 
-public class HomeFragment_Android extends Fragment {
+public class AndroidFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

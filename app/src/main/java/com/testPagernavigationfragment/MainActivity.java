@@ -3,6 +3,7 @@ package com.testPagernavigationfragment;
 import android.os.Bundle;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.testPagernavigationfragment.adapter.MyPagerAdapter;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.annotation.NonNull;
@@ -13,7 +14,6 @@ import androidx.viewpager.widget.ViewPager;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -27,23 +27,30 @@ public class MainActivity extends AppCompatActivity {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
                     viewPager.setCurrentItem(0);
-                    if(lastfragment != 0) {
-                        switchFragment(lastfragment,0);
+                    if (lastfragment != 0) {
+                        switchFragment(lastfragment, 0);
                         lastfragment = 0;
                     }
                     return true;
                 case R.id.navigation_dashboard:
                     viewPager.setCurrentItem(1);
-                    if(lastfragment != 1) {
-                        switchFragment(lastfragment,1);
+                    if (lastfragment != 1) {
+                        switchFragment(lastfragment, 1);
                         lastfragment = 1;
                     }
                     return true;
                 case R.id.navigation_notifications:
                     viewPager.setCurrentItem(2);
-                    if(lastfragment != 2) {
-                        switchFragment(lastfragment,2);
+                    if (lastfragment != 2) {
+                        switchFragment(lastfragment, 2);
                         lastfragment = 2;
+                    }
+                    return true;
+                case R.id.navigation_mine:
+                    viewPager.setCurrentItem(3);
+                    if (lastfragment != 3) {
+                        switchFragment(lastfragment, 3);
+                        lastfragment = 3;
                     }
                     return true;
             }
@@ -58,9 +65,10 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<View> aList;
     private MyPagerAdapter mAdapter;
 
-    private  HomeFragment dicFragment;
+    private HomeFragment dicFragment;
     private ArticleFragment gankFragment;
     private TencentFragment todoFragment;
+    private MineFragment mineFragment;
     private Fragment[] fragments;
     private int lastfragment;
 
@@ -118,33 +126,33 @@ public class MainActivity extends AppCompatActivity {
     private void setupViewPager(ViewPager viewPager) {
         aList = new ArrayList<View>();
         LayoutInflater li = getLayoutInflater();
-        aList.add(li.inflate(R.layout.gank_layout,null,false));
-        aList.add(li.inflate(R.layout.dic_layout,null,false));
-        aList.add(li.inflate(R.layout.todo_layout,null,false));
+        aList.add(li.inflate(R.layout.dic_layout, null, false));
+        aList.add(li.inflate(R.layout.gank_layout, null, false));
+        aList.add(li.inflate(R.layout.todo_layout, null, false));
+        aList.add(li.inflate(R.layout.fragment_mine, null, false));
         mAdapter = new MyPagerAdapter(aList);
         viewPager.setAdapter(mAdapter);
     }
 
-    private void initFragment()
-    {
+    private void initFragment() {
         dicFragment = new HomeFragment();
         gankFragment = new ArticleFragment();
         todoFragment = new TencentFragment();
-        fragments = new Fragment[]{gankFragment, dicFragment, todoFragment};
+        mineFragment=new MineFragment();
+        fragments = new Fragment[]{dicFragment, gankFragment, todoFragment,mineFragment};
         lastfragment = 0;
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.viewpager, gankFragment)
-                .show(gankFragment)
+                .replace(R.id.viewpager, dicFragment)
+                .show(dicFragment)
                 .commitAllowingStateLoss();
     }
 
-    private void switchFragment(int lastfragment, int index)
-    {
+    private void switchFragment(int lastfragment, int index) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         //隐藏上个Fragment
         transaction.hide(fragments[lastfragment]);
-        if(fragments[index].isAdded() == false) {
-            transaction.add(R.id.viewpager,fragments[index]);
+        if (fragments[index].isAdded() == false) {
+            transaction.add(R.id.viewpager, fragments[index]);
         }
         transaction.show(fragments[index]).commitAllowingStateLoss();
     }

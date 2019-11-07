@@ -1,4 +1,4 @@
-package com.testPagernavigationfragment;
+package com.testPagernavigationfragment.adapter;
 
 import android.view.View;
 import android.view.ViewGroup;
